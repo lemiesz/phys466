@@ -24,9 +24,15 @@
 		<h1>Terrain Generation</h1>
 		<h2>Random Heights</h2>
 
-		<div>
-		<video style="width:350;height:350" src="random_sim.mp4" controls poster="random_hills.png" ></video
+<div>
+	<img style="width:300;height:300" src="./figure_1.png"/>
+
+		<video style="width:350;height:350" src="random_sim.mp4" controls poster="figure_1.png"></video>
+
+		
 	</div>
+
+
 
 		<p>The most trivial and naive initialization for a two dimensional terrain is a collection of random heights. Though incredibly fast, and easy to implement and scale, the terrain suffered, as one would expect, from extremely high local slopes. This aspect was quickly improved by building the array of random heights in sequence and choosing the each consecutive height to be selected by guassian with a tunable standard deviation centered at the previous height. This implementation, has another, more severe, problem which is the intrinsic anisotropy. The desired array is two dimensional, however, the algorithm can only progress linearly thorugh a single dimension at a time. Therefore, the results were smooth and desirable in one orientation, but suffered the same high local slopes in the orthogonal direction.</p>
 		<h2>Random Generated Hills</h2>
