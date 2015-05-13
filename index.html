@@ -25,20 +25,20 @@
 		<h2>Random Heights</h2>
 
 		<div>
-		<video style="width:350;height:350" src="random_sim.mp4" controls></video
+		<video style="width:350;height:350" src="random_sim.mp4" controls poster="random_hills.png" ></video
 	</div>
 
 		<p>The most trivial and naive initialization for a two dimensional terrain is a collection of random heights. Though incredibly fast, and easy to implement and scale, the terrain suffered, as one would expect, from extremely high local slopes. This aspect was quickly improved by building the array of random heights in sequence and choosing the each consecutive height to be selected by guassian with a tunable standard deviation centered at the previous height. This implementation, has another, more severe, problem which is the intrinsic anisotropy. The desired array is two dimensional, however, the algorithm can only progress linearly thorugh a single dimension at a time. Therefore, the results were smooth and desirable in one orientation, but suffered the same high local slopes in the orthogonal direction.</p>
 		<h2>Random Generated Hills</h2>
-<div>
-		<img style="width:350;height:350" src="./random_hills.png"/>
+	<div>
+		<img style="width:350;height:350" src="./random_hills.png" align = "middle" >
 	</div>
 
 		<p>The next logical improvement on the random heights algorithm was to control the slopes of the terrain by imposing a controllable number of local maxima, called hills.  For this implementation the number, height, and radius of the local maxima were chosen randomly within a tunable range.  These hills were then randomly placed within the system and overlapping regions of hills were treated additively, to create the unique terrain properties.  This technique offered significant improvements over the random heights algorithm.  Namely there was dramatic improvement in the isotropy and smoothness of the generated terrains.  This follows as expected from the isotropic constraints on the hill generations and the forced continuity of slope determined by the width and height of each hill.The primary concern with using this algorithm was the relatively consistent form of the terrains generated.  While consistency is good for checking the stability of the code, it also indicated that the technique may not be ergodic which was of philosophical concern.</p>
 		<h2>Monte Carlo Terrain</h2>
 
 		<div>
-		<img style="width:350;height:350" src="./smooth_hills.png"/>
+		<img style="width:350;height:350" src="./smooth_hills.png">
 	</div>
 
 		<p>	The goal of this algorithm was to draw upon inspiration from class to create a more sophisticated terrain generation code using monte carlo.  This was implemented by considering the terrain generation as an arbitrarily long series of steps.  In each step the algorithm randomly chooses a square to propose a height increase to.  It then assess a probability of accepting that proposal based on the current height of the square and the height of the nearest neighbors.
@@ -66,12 +66,22 @@ The stability limits of these parameters were explored.  Unstable terrains were 
 
 
 <div>
-		<video style="width:350;height:350" src="monte_carlo.mp4" controls></video>
+	<img style="width:300;height:300" src="./mc_terrain.png"/>
+
+		<video style="width:350;height:350" src="monte_carlo.mp4" controls poster="mc_terrain.png"></video>
+
+		
 	</div>
 
 		<p>Before the simulation could be started, water needed to be added.  Because of the nature of water and the expected fluidity of its motion, careful initialization of the water was not considered a high priority.  For this reason two random initialization conditions were considered.  The first was to randomly distribute water in all of the cells with equal probability.  The second was to randomly distribute water in cells above a certain height threshold.  This was designed to simulate an initial condition of water in ice caps on the top of the mountains.  This initialization was preferred to the completely random one because it allowed for a more immediately intuitive understanding of the water flow behavior in the system.</p>
 	<p>Once the terrain was properly initialized, the next step was to create the rule system by which the cellular automata simulation would be governed.  To do this, we implemented two rules.  The first was that each cell would determine its new water height based off of a factor of the difference between it's total height and that of its neighbors.  This would allow the water to flow down slopes with each step.  The second was to change the terrain heights based on a factor of the change in water height associated with each step.  This rule was designed to simulate the erosion of land under intense changes of water height.</p>
 	<p>Initially, many additional features were planned for this project, including a study of variable rain and natural springs as a water sources, water sinks at boundaries, and variable erosion rate to simulate solubility of rock layers.  However, due to time constraints these plans were cut to increase focus on the primary interests in terrain generation algorithms and visualization techniques.</p>
+<div>
+	<video style="width:350;height:350" src="watRunBest.mp4" controls poster="mc_terrain.png"></video>
+
+	<video style="width:350;height:350" src="monte_carlo.mp4" controls poster="england1.png"></video>
+</div>
+
 	<h1>Conclusion and Future Steps</h1>
 	<p>This project attempted an implementation of monte carlo terrain generation to create an improved cellular automata simulation of a river valley system.  The goal was to observe the correct physical behavior while only implementing abstract system constraints.Four different terrain generation algorithms were considered, including monte carlo and real site map integration.  A number of visualization techniques were considered and implemented with a variety of effects.  Ultimately, the cellular automata simulation was observed to have the correct physical behavior and so the project was consider a success.<p>
 
