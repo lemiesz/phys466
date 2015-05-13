@@ -1,0 +1,30 @@
+<html>
+<head>
+	<title>Stochastic Evolution of River Valleys using Monte Carlo and Cellular Automata</title>
+</head>
+<body>
+<div id="wrapper" style="max-width:80%; margin:0 auto">
+	<div id="header" style="text-align:center; padding:20px; background-color:lightblue">
+		<h1>Stochastic Evolution of River Valleys using Monte Carlo and Cellular Automata</h1>
+		<h2>Jyoti Aneja, Robert Lemiesz, Michael Di Mare</h2>
+	</div>
+	<br>
+	<hr style="height:12px; border:0; box-shadow:inset 0 12px 12px -12px blue">
+	<div id="info" style="text-align:justified">
+		<h1>Our Work</h1>
+		<p>This project was an attempt to successfully apply cellular automata to river-valley system physics. The primary objective was to observe accurate physical behavior while implementing only abstract system constraints. This implementation focused different algorithms for terrain initialization. The properties of the different terrains were analyzed visually for slope and smoothness as well as the way in which the cellular automata model behaved within the system, particularly the timescale of the transient.</p>
+		<h1>Terrain Generation</h1>
+		<h2>Random Heights</h2>
+		<p>The most trivial and naïve initialization for a two dimensional terrain is a collection of random heights. Though incredibly fast, and easy to implement and scale, the terrain suffered, as one would expect, from extremely high local slopes. This aspect was quickly improved by building the array of random heights in sequence and choosing the each consecutive height to be selected by guassian with a tunable standard deviation centered at the previous height. This implementation, has another, more severe, problem which is the intrinsic anisotropy. The desired array is two dimensional, however, the algorithm can only progress linearly thorugh a single dimension at a time. Therefore, the results were smooth and desirable in one orientation, but suffered the same high local slopes in the orthogonal direction.</p>
+		<h2>Markov Chain Terrain</h2>
+		<h2>Monte Carlo Terrain</h2>
+		<p>The goal of this algorithm was to draw upon inspiration from class to create a more sophisticated terrain generation code using monte carlo. This was implemented by considering the terrain generation as an arbitrarily long series of steps. In each step the algorithm randomly chooses a square to propose a height increase to. It then assess a probability of accepting that proposal based on the current height of the square and the height of the nearest neighbors.</p>
+		<p>This algorithm was then improved by implementing cluster building into the monte carlo. Instead of choosing a single square to add height to, the algorithm randomly chooses an initial square as a seed for a cluster and then recursively adds neighboring squares into the cluster with a tunable probability. This probability could be varied to dramatically change the cluster length. The probability chosen for the final simulation yielded an average cluster length of 33 units. The algorithm would then choose whether or not to increase the height of the cluster by averaging the probabilities of increasing each square. By utilizing clusters, the algorithm experienced an observed but unmeasured speed up as well as a number of qualitative improvements. The cluster algorithm led to broader mountains in the terrains with more natural slopes.</p>
+		<h2>Perlin Noise Function Terrain</h2>
+		<h2>Water Flow Modeling</h2>
+		<p>Once the terrain was properly initialized, the next step was to create the rule system by which the cellular automata simulation would be governed. To do this,</p>
+		<p>Initially, many additional features were planned for this project, including a study of variable rain and natural springs as a water sources, water sinks at boundaries, and variable erosion rate to simulate solubility of rock layers. However, due to time constraints these plans were cut to increase focus on the primary interests in terrain generation algorithms and visualization techniques.</p>
+	</div>
+</div>
+</body>
+</html>
